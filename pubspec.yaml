@@ -1,6 +1,6 @@
-name: daterange
+name: in_date_range
 description: Encapsulates a start and end DateTime that represent the range of dates.
-version: 1.0.0
+version: 1.0.0-dev
 homepage: https://github.com/innim/
 repository: https://github.com/Innim/dart_date_range
 issue_tracker: https://github.com/Innim/dart_date_range/issues
