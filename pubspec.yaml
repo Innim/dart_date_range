@@ -7,3 +7,5 @@ issue_tracker: https://github.com/Innim/dart_date_range/issues
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
+dev_dependencies:
+  innim_lint: ^0.2.0
