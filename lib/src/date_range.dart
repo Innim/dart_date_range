@@ -61,6 +61,10 @@ class DateRange extends Equatable {
     return value.compareTo(start) >= 0 && value.isBefore(end);
   }
 
+  /// Returns `true` if the whole [range] is in current range.
+  bool includes(DateRange range) =>
+      range.start.compareTo(start) >= 0 && range.end.compareTo(end) <= 0;
+
   /// Возвращает [DateTime] для каждого для в заданном промежутке.
   ///
   /// [DateRange.start] включительно,

@@ -98,4 +98,113 @@ void main() {
       expect(range.contains(start.subtract(const Duration(seconds: 1))), false);
     });
   });
+
+  group('includes()', () {
+    test('should return true if whole range is in range', () {
+      final start = DateTime(2019, 12, 3, 18, 10, 30);
+      final end = start.add(const Duration(hours: 45, minutes: 10));
+      final range = DateRange(start, end);
+
+      expect(range.includes(DateRange(start, end)), true);
+      expect(
+          range.includes(DateRange(
+            start.add(const Duration(seconds: 1)),
+            end,
+          )),
+          true);
+      expect(
+          range.includes(DateRange(
+            start.add(const Duration(hours: 1)),
+            end,
+          )),
+          true);
+      expect(
+          range.includes(DateRange(
+            start,
+            end.subtract(const Duration(seconds: 1)),
+          )),
+          true);
+      expect(
+          range.includes(DateRange(
+            start.add(const Duration(days: 1)),
+            end.subtract(const Duration(hours: 3)),
+          )),
+          true);
+    });
+
+    test('should return false if whole range is out of range', () {
+      final start = DateTime(2019, 12, 3, 18, 10, 30);
+      final end = start.add(const Duration(hours: 45, minutes: 10));
+      final range = DateRange(start, end);
+
+      expect(
+          range.includes(DateRange(
+            end,
+            end.add(const Duration(seconds: 1)),
+          )),
+          false);
+
+      expect(
+          range.includes(DateRange(
+            end.add(const Duration(seconds: 1)),
+            end.add(const Duration(days: 1)),
+          )),
+          false);
+
+      expect(
+          range.includes(DateRange(
+            end.add(const Duration(days: 3)),
+            end.add(const Duration(days: 10)),
+          )),
+          false);
+
+      expect(
+          range.includes(DateRange(
+            start.subtract(const Duration(days: 1)),
+            start.subtract(const Duration(seconds: 1)),
+          )),
+          false);
+    });
+
+    test('should return false if part of range is out of range', () {
+      final start = DateTime(2019, 12, 3, 18, 10, 30);
+      final end = start.add(const Duration(hours: 45, minutes: 10));
+      final range = DateRange(start, end);
+
+      expect(
+          range.includes(DateRange(
+            start,
+            end.add(const Duration(seconds: 1)),
+          )),
+          false);
+
+      expect(
+          range.includes(DateRange(
+            start.add(const Duration(hours: 1)),
+            end.add(const Duration(days: 1)),
+          )),
+          false);
+
+      expect(
+          range.includes(DateRange(
+            start.subtract(const Duration(days: 1)),
+            end,
+          )),
+          false);
+
+      expect(
+          range.includes(DateRange(
+            start.subtract(const Duration(days: 1)),
+            end.subtract(const Duration(hours: 10)),
+          )),
+          false);
+
+      expect(
+          range.includes(DateRange(
+            start.subtract(const Duration(days: 1)),
+            end.add(const Duration(days: 1)),
+          )),
+          false);
+    });
+  });
 }
