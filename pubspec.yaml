@@ -1,6 +1,6 @@
 name: in_date_range
 description: Encapsulates a start and end DateTime that represent the range of dates.
-version: 1.0.1
+version: 1.1.0
 homepage: https://github.com/innim/
 repository: https://github.com/Innim/dart_date_range
 issue_tracker: https://github.com/Innim/dart_date_range/issues
@@ -10,7 +10,7 @@ environment:
 
 dependencies:
   equatable: ^2.0.0
-  in_date_utils: ^1.0.1+1
+  in_date_utils: ^1.2.0+1
 
 dev_dependencies:
   innim_lint: ^0.2.0

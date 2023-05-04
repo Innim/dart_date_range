@@ -20,7 +20,10 @@ class DateRange extends Equatable {
   ///
   /// За начало берется 00:00 часов указанного дня.
   DateRange.day(DateTime value)
-      : this(DateUtils.startOfDay(value), DateUtils.startOfNextDay(value));
+      : this(
+          DateTimeUtils.startOfDay(value),
+          DateTimeUtils.startOfNextDay(value),
+        );
 
   /// Создает промежуток в 1 неделю.
   /// Creates 1 week range.
@@ -34,27 +37,33 @@ class DateRange extends Equatable {
   ///
   /// By default it's [DateTime.monday].
   DateRange.week(DateTime value, {int? firstWeekday})
-      : this(DateUtils.firstDayOfWeek(value, firstWeekday: firstWeekday),
-            DateUtils.firstDayOfNextWeek(value, firstWeekday: firstWeekday));
+      : this(
+          DateTimeUtils.firstDayOfWeek(value, firstWeekday: firstWeekday),
+          DateTimeUtils.firstDayOfNextWeek(value, firstWeekday: firstWeekday),
+        );
 
   /// Создает промежуток в 1 месяц.
   ///
   /// За начало берется 00:00 часов первого дня месяца, к которому относится [value].
   DateRange.month(DateTime value)
-      : this(DateUtils.firstDayOfMonth(value),
-            DateUtils.firstDayOfNextMonth(value));
+      : this(
+          DateTimeUtils.firstDayOfMonth(value),
+          DateTimeUtils.firstDayOfNextMonth(value),
+        );
 
   /// Создает промежуток в 1 год.
   ///
   /// За начало берется 00:00 часов первого дня года, к которому относится [value].
   DateRange.year(DateTime value)
-      : this(DateUtils.firstDayOfYear(value),
-            DateUtils.firstDayOfNextYear(value));
+      : this(
+          DateTimeUtils.firstDayOfYear(value),
+          DateTimeUtils.firstDayOfNextYear(value),
+        );
 
   /// Создает промежуток в 1 день - сегодня.
   ///
   /// См. [DateRange.day].
-  DateRange.today() : this.day(DateTime.now());
+  DateRange.today() : this.day(DateTimeUtils.now());
 
   /// Проверяет, содержится ли переданная дата в промежутке.
   bool contains(DateTime value) {
@@ -70,7 +79,7 @@ class DateRange extends Equatable {
   /// [DateRange.start] включительно,
   /// [DateRange.end] исключительно.
   Iterable<DateTime> daysInRange(DateRange range) {
-    return DateUtils.generateWithDayStep(range.start, range.end);
+    return DateTimeUtils.generateWithDayStep(range.start, range.end);
   }
 
   @override
